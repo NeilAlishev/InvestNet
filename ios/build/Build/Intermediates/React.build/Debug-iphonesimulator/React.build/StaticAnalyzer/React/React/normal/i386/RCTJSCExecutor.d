@@ -1,0 +1,24 @@
+dependencies: \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Executors/RCTJSCExecutor.mm \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Executors/RCTJSCExecutor.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTJavaScriptExecutor.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/neil/Hacklist/Hacklist/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/neil/Hacklist/Hacklist/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/neil/Hacklist/Hacklist/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Modules/JSCSamplingProfiler.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Modules/RCTDevMenu.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Executors/RCTJSCErrorHandling.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Profiler/RCTJSCProfiler.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/neil/Hacklist/Hacklist/node_modules/react-native/React/Base/RCTUtils.h
