@@ -9,19 +9,20 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import HackRow from './hack_row';
+import EventRow from './event_row';
 
 import Route from '../../enums/route';
 
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
-export default class HackList extends React.Component {
+export default class EventList extends React.Component {
   componentWillMount() {
     if (Platform.OS === 'android') {
       BackAndroid.addEventListener(
         'hardwareBackPress', backBtnCallback.bind(this)
       );
     }
+
     this.state = {
       rowCount: 0
     }
@@ -68,18 +69,16 @@ function dataSource() {
   const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2
   });
-  return ds.cloneWithRows(this.props.hacks)
+  return ds.cloneWithRows(this.props.events)
 }
 
-function renderRow(hack) {
-  const firstRow = this.state.rowCount % this.props.hacks.length === 0;
-  let margin = firstRow ? getMargin() : 0;
+function renderRow(event) {
   const style = {
-    marginTop: margin,
+    marginTop: getMargin(),
     marginBottom: 15
   }
   this.state.rowCount++;
-  return <HackRow hack={hack} navigator={this.props.navigator} style={style}/>;
+  return <EventRow event={event} navigator={this.props.navigator} style={style}/>;
 }
 
 function getMargin() {

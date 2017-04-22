@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   Platform,
   Button,
-  Slider
+  Slider,
+  Alert,
+  AsyncStorage
 } from 'react-native';
 import {
   Card
@@ -22,7 +24,9 @@ import CustomText from '../core/custom_text';
 import DateUtil from '../../util/date_util.js';
 import Route from '../../enums/route';
 
-export default class HackRow extends React.Component {
+import Environment from '../../environment/environment';
+
+export default class EventRow extends React.Component {
   constructor() {
     super();
 
@@ -30,46 +34,42 @@ export default class HackRow extends React.Component {
     this.state = {
       value: 0.5
     };
+
+    this.event = null;
   }
 
   render() {
-    const hack = this.props.hack;
-    const daysFromNow = DateUtil.getDaysFromNow(hack.date);
+    const event = this.props.event;
+    const daysFromNow = DateUtil.getDaysFromNow(event.closeDate);
+
+    this.event = this.props.event;
 
     return (
       <TouchableOpacity onPress={onPressCallback.bind(this)} activeOpacity={0.9}>
-        <Card title={compoundTitle(hack)}
+        <Card title={compoundTitle(event)}
               containerStyle={this.props.style}>
 
           <View style={styles.buttonsContainer}>
-            <View>
-              <Button
-                onPress={onYesPress.bind(this)}
-                title="Да"
-                color="green"
-              />
-            </View>
-
             <View style={styles.scrollBar}>
               <Text>
-                Насколько уверены?
+                Я уверен на:
               </Text>
               <Text style={{fontWeight: 'bold', alignSelf: 'center'}}>
-                {Math.round(this.state.value * 100)}
+                {Math.round(this.state.value * 100)}%
               </Text>
               <Slider
                 {...this.props}
                 value={this.state.value}
                 onValueChange={(value) => this.setState({value: value})} />
             </View>
+          </View>
 
-            <View>
-              <Button
-                onPress={onNoPress.bind(this)}
-                title="Нет"
-                color="red"
-              />
-            </View>
+          <View>
+            <Button
+              onPress={confirmDialogue.bind(this)}
+              title="Подтвердить!"
+              color="green"
+            />
           </View>
 
           <View style={styles.rowBlock}>
@@ -103,12 +103,41 @@ function compoundTitle(hack) {
 function onPressCallback() {
 }
 
-function onYesPress() {
-
+function confirmButtonCallback() {
+  confirmDialogue();
 }
 
-function onNoPress() {
+function confirmDialogue() {
+  let that = this;
 
+  Alert.alert(
+    'Вы уверены?',
+    '',
+    [
+      {text: 'Cancel', style: 'cancel'},
+      {text: 'OK', onPress: sendPrediction.bind(that)},
+    ],
+    { cancelable: false }
+  );
+}
+
+function sendPrediction() {
+  let eventId = this.event.id;
+  let prediction = Math.round(this.state.value * 100);
+
+  AsyncStorage.getItem('client_token', (err, token) => {
+    token = JSON.parse(token);
+    fetch(Environment.BASE_URL + '/events/' + eventId + '/predictions' + '?token=' + token + '&prediction=' + prediction);
+  });
+
+  Alert.alert(
+    'Ваше предсказание отправлено!',
+    '',
+    [
+      {text: 'ОК'},
+    ],
+    { cancelable: false }
+  );
 }
 
 function titleColor() {
@@ -128,10 +157,10 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginBottom: 20
   },
   scrollBar: {
-
+    flex: 1
   }
 });

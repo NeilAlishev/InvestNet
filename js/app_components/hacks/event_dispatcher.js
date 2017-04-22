@@ -5,18 +5,18 @@ import {
 } from 'react-native';
 
 import HackPage from './hack';
-import HackList from './hack_list';
+import EventList from './event_list';
 import Settings from './settings';
 
 import Route from '../../enums/route';
 
-export default class HackDispatcher extends React.Component {
+export default class EventDispatcher extends React.Component {
   render() {
     return (
       <Navigator
         initialRoute={{
-          id: Route.hackList,
-          hacks: this.props.hacks
+          id: Route.eventList,
+          events: this.props.events
         }}
         renderScene={navigatorRenderScene}/>
     );
@@ -25,8 +25,8 @@ export default class HackDispatcher extends React.Component {
 
 function navigatorRenderScene(route, navigator) {
   switch (route.id) {
-    case Route.hackList:
-      return <HackList hacks={route.hacks} navigator={navigator}/>;
+    case Route.eventList:
+      return <EventList events={route.events} navigator={navigator}/>;
     case Route.hackPage:
       return <HackPage hack={route.hack} navigator={navigator}/>;
     case Route.settings:

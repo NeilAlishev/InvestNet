@@ -1,3 +1,4 @@
 export default Api = {
-  hacks: '/api/hacks?token='
+    events: '/events/?token='
+    // events: '/api/hacks?token='
 }

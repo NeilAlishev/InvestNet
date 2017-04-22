@@ -5,7 +5,7 @@ import {
 
 import Spinner from './core/spinner';
 import ChoosePage from './auth/choose';
-import HackDispatcher from './hacks/hack_dispatcher';
+import EventDispatcher from './hacks/event_dispatcher';
 
 import Api from '../enums/api';
 import Environment from '../environment/environment';
@@ -13,16 +13,17 @@ import Environment from '../environment/environment';
 export default class MainPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {};
-    this.getHacks();
+    this.getEvents();
   }
 
   render() {
-    const hacks = this.state.hacks;
+    const events = this.state.events;
     const error = this.state.error;
 
-    if (hacks) {
-      return <HackDispatcher hacks={hacks}/>;
+    if (events) {
+      return <EventDispatcher events={events}/>;
     }
     if (error) {
       return <ChoosePage navigator={this.props.navigator} error={true}/>;
@@ -30,14 +31,14 @@ export default class MainPage extends React.Component {
     return <Spinner/>;
   }
 
-  getHacks() {
+  getEvents() {
     AsyncStorage.getItem('client_token', (err, token) => {
       token = JSON.parse(token);
-      fetch(Environment.BASE_URL + Api.hacks + token)
+      fetch(Environment.BASE_URL + Api.events + token)
         .then(response => response.json())
         .then(resp => {
           this.setState({
-            hacks: resp.data,
+            events: resp.data,
             error: resp.error
           });
         })
