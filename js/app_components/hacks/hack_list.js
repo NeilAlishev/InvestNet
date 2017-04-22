@@ -3,7 +3,9 @@ import {
   ListView,
   Platform,
   StyleSheet,
-  BackAndroid
+  BackAndroid,
+  View,
+  Text
 } from 'react-native';
 
 import HackRow from './hack_row';
@@ -24,11 +26,18 @@ export default class HackList extends React.Component {
 
   render() {
     return (
-      <ListView
-        dataSource={dataSource.apply(this)}
-        renderRow={renderRow.bind(this)}
-        enableEmptySections={true}
-        style={styles.list}/>
+      <View>
+        <View style={styles.navBar}>
+          <Text style={styles.navBarTitle}>InvestNet</Text>
+          <Text> </Text>
+        </View>
+
+        <ListView
+          dataSource={dataSource.apply(this)}
+          renderRow={renderRow.bind(this)}
+          enableEmptySections={true}
+          style={styles.list}/>
+      </View>
     );
   }
 }
@@ -69,5 +78,16 @@ function getMargin() {
 const styles = StyleSheet.create({
   list: {
     backgroundColor: 'white'
+  },
+  navBar: {
+    height: 70,
+    backgroundColor: '#007aff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navBarTitle: {
+    color: '#fff',
+    fontSize: 16,
+    marginTop: 12,
   }
 });

@@ -5,7 +5,8 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  Platform
+  Platform,
+  Button
 } from 'react-native';
 import {
   Card
@@ -27,26 +28,32 @@ export default class HackRow extends React.Component {
 
     return (
       <TouchableOpacity onPress={onPressCallback.bind(this)} activeOpacity={0.9}>
-        <Card title={compoundTitle(hack)} image={{uri: hack.imageUrl}}
+        <Card title={compoundTitle(hack)}
               containerStyle={this.props.style}>
-          <Text>
-            <Octicon name='organization' style={styles.icon}/>
-            <CustomText style={{color: 'gray'}}>
-              {' '}{hack.organizer}
-            </CustomText>
-          </Text>
-          <Text>
-            <MaterialIcon name='city' style={styles.icon}/>
-            <CustomText style={{color: 'gray'}}>
-              {' '}{hack.city}
-            </CustomText>
-          </Text>
+
+          <View style={styles.buttonsContainer}>
+            <View>
+              <Button
+                onPress={onYesPress.bind(this)}
+                title="Да"
+                color="green"
+              />
+            </View>
+
+            <View>
+              <Button
+                onPress={onNoPress.bind(this)}
+                title="Нет"
+                color="red"
+              />
+            </View>
+          </View>
+
           <View style={styles.rowBlock}>
             <CustomText style={{color: 'gray', paddingLeft: 1}}>
               <AwesomeIcon name='clock-o' size={16}/>
               {' '}{daysFromNow}
             </CustomText>
-            <MaterialIcon name='arrow-right' size={18} color='gray'/>
           </View>
         </Card>
       </TouchableOpacity>
@@ -71,10 +78,14 @@ function compoundTitle(hack) {
 }
 
 function onPressCallback() {
-  this.props.navigator.push({
-    id: Route.hackPage,
-    hack: this.props.hack
-  });
+}
+
+function onYesPress() {
+
+}
+
+function onNoPress() {
+
 }
 
 function titleColor() {
@@ -90,5 +101,11 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 15,
     color: 'gray'
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    marginBottom: 20
   }
 });

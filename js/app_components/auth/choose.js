@@ -8,7 +8,6 @@ import {
   BackAndroid
 } from 'react-native';
 
-import Logo from '../helpers/auth/logo';
 import SocialButtons from '../helpers/auth/social_buttons';
 
 import Route from '../../enums/route';
@@ -29,8 +28,7 @@ export default class ChoosePage extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.logo}><Logo/></View>
-        <SocialButtons navigator={this.props.navigator}/>
+        <SocialButtons navigator={this.props.navigator} style={styles.button}/>
       </View>
     );
   }
@@ -61,9 +59,5 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: 'white',
-  },
-  logo: {
-    alignItems: 'center',
-    marginTop: 40
   }
 });

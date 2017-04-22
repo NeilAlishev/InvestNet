@@ -13,7 +13,7 @@ export default class SocialButtons extends React.Component {
   render() {
     return (
       <View>
-        <View style={{marginLeft: 20, marginRight: 20, marginTop: 20}}>
+        <View style={{marginLeft: 20, marginRight: 20, marginTop: 200}}>
           <TouchableHighlight
             style={[styles.button, styles.githubButton]}
             onPress={githubAuth.bind(this)}
