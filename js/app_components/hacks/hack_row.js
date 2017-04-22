@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
-  Button
+  Button,
+  Slider
 } from 'react-native';
 import {
   Card
@@ -22,6 +23,15 @@ import DateUtil from '../../util/date_util.js';
 import Route from '../../enums/route';
 
 export default class HackRow extends React.Component {
+  constructor() {
+    super();
+
+    // retrieve percentage from server, or zero if no bet was done.
+    this.state = {
+      value: 0.5
+    };
+  }
+
   render() {
     const hack = this.props.hack;
     const daysFromNow = DateUtil.getDaysFromNow(hack.date);
@@ -38,6 +48,19 @@ export default class HackRow extends React.Component {
                 title="Да"
                 color="green"
               />
+            </View>
+
+            <View style={styles.scrollBar}>
+              <Text>
+                Насколько уверены?
+              </Text>
+              <Text style={{fontWeight: 'bold', alignSelf: 'center'}}>
+                {Math.round(this.state.value * 100)}
+              </Text>
+              <Slider
+                {...this.props}
+                value={this.state.value}
+                onValueChange={(value) => this.setState({value: value})} />
             </View>
 
             <View>
@@ -107,5 +130,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     marginBottom: 20
+  },
+  scrollBar: {
+
   }
 });

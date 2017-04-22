@@ -5,12 +5,15 @@ import {
   StyleSheet,
   BackAndroid,
   View,
-  Text
+  Text,
+  TouchableHighlight
 } from 'react-native';
 
 import HackRow from './hack_row';
 
 import Route from '../../enums/route';
+
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 export default class HackList extends React.Component {
   componentWillMount() {
@@ -28,8 +31,16 @@ export default class HackList extends React.Component {
     return (
       <View>
         <View style={styles.navBar}>
-          <Text style={styles.navBarTitle}>InvestNet</Text>
-          <Text> </Text>
+          <TouchableHighlight
+            style={styles.navBarButton}
+            onPress={settingsButtonCallback.bind(this)}
+            underlayColor='#007aff'
+          >
+            <SimpleLineIcon name='settings'
+              size={20}
+              color='white'
+            />
+          </TouchableHighlight>
         </View>
 
         <ListView
@@ -72,7 +83,13 @@ function renderRow(hack) {
 }
 
 function getMargin() {
-  return Platform.OS === 'android' ? 15 : 35;
+  return Platform.OS === 'android' ? 15 : 25;
+}
+
+function settingsButtonCallback() {
+  this.props.navigator.push({
+    id: Route.settings
+  });
 }
 
 const styles = StyleSheet.create({
@@ -82,12 +99,12 @@ const styles = StyleSheet.create({
   navBar: {
     height: 70,
     backgroundColor: '#007aff',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
-  navBarTitle: {
-    color: '#fff',
-    fontSize: 16,
-    marginTop: 12,
+  navBarButton: {
+    alignSelf: 'flex-end',
+    marginRight: 15,
+    marginTop: 10
   }
 });

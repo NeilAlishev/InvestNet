@@ -6,6 +6,7 @@ import {
 
 import HackPage from './hack';
 import HackList from './hack_list';
+import Settings from './settings';
 
 import Route from '../../enums/route';
 
@@ -28,5 +29,7 @@ function navigatorRenderScene(route, navigator) {
       return <HackList hacks={route.hacks} navigator={navigator}/>;
     case Route.hackPage:
       return <HackPage hack={route.hack} navigator={navigator}/>;
+    case Route.settings:
+      return <Settings navigator={navigator}/>;
   }
 }

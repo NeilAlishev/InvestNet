@@ -5,5 +5,6 @@ export default Route = {
   authFailed: 3,
   main: 4,
   hackList: 5,
-  hackPage: 6
+  hackPage: 6,
+  settings: 7
 }
