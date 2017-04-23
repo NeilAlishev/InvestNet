@@ -47,12 +47,12 @@ export default class EventRow extends React.Component {
     return (
       <TouchableOpacity onPress={onPressCallback.bind(this)} activeOpacity={0.9}>
         <Card title={compoundTitle(event)}
-              containerStyle={this.props.style}>
+              containerStyle={this.props.style} image={{uri: event.imageUrl}}>
 
           <View style={styles.buttonsContainer}>
             <View style={styles.scrollBar}>
               <Text>
-                Я уверен на:
+                Вероятность этого события:
               </Text>
               <Text style={{fontWeight: 'bold', alignSelf: 'center'}}>
                 {Math.round(this.state.value * 100)}%
